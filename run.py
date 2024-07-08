@@ -4,6 +4,19 @@ import numpy as np
 import torch
 import rembg
 from PIL import Image
+import logging
+from __init__ import setup_logger
+
+common_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s')
+
+# Setup logging for diffusers
+setup_logger('diffusers_logging', logging.INFO, [logging.INFO, logging.WARNING], [logging.ERROR, logging.CRITICAL], common_formatter)
+
+# Setup general logging
+setup_logger('', logging.INFO, [logging.INFO, logging.WARNING], [logging.ERROR, logging.CRITICAL], common_formatter)
+
+logging.captureWarnings(True)
+
 from torchvision.transforms import v2
 from pytorch_lightning import seed_everything
 from omegaconf import OmegaConf

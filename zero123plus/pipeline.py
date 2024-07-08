@@ -7,6 +7,16 @@ import torch
 import torch.nn as nn
 import torch.utils.checkpoint
 import torch.distributed
+import logging
+from __init__ import setup_logger
+
+common_formatter = logging.Formatter('%(asctime)s %(levelname)s: %(message)s')
+
+# Setup logging for transformers
+setup_logger('transformers', logging.INFO, [logging.WARNING], [logging.ERROR, logging.CRITICAL], common_formatter)
+
+logging.captureWarnings(True)
+
 import transformers
 from collections import OrderedDict
 from PIL import Image
